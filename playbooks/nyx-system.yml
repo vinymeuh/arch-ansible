@@ -10,9 +10,12 @@
       rootuuid: 78da4ebd-5eba-4a7c-8caf-5f297eece0a7
       ucode: amd-ucode
       options: nvidia-drm.modeset=1
+    base:
+      x11keymap: localectl set-x11-keymap us,fr pc105 altgr-intl,azerty
 
   tasks:
     - name: Fail if we are not on nyx
       ansible.builtin.fail: msg="This playbook is made to set up nyx only"
       when: ansible_hostname != "nyx"
     - {import_role: name=system tasks_from=kernel, tags: ['kernel']}
+    - {import_role: name=system tasks_from=base, tags: ['base']}

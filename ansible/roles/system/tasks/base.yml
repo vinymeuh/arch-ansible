@@ -1,0 +1,149 @@
+
+- name: base > Copy .bash_profile for root
+  ansible.builtin.copy: src=root/bash_profile dest=~/.bash_profile mode=0400 owner=root group=root
+
+- name: base > Install base tools
+  community.general.pacman: name={{ packages | join(',') }}
+  vars:
+    packages:
+      - acpi
+      - avahi,nss-mdns
+      - base-devel,cmake,gdb
+      - bluez,bluez-utils
+      - bridge-utils
+      - cpio
+      - curl
+      - dmidecode
+      - exfat-utils
+      - flatpak
+      - fzf
+      - git,python-pre-commit
+      - lm_sensors
+      - lsof
+      - lshw
+      - lsb-release
+      - man-db,man-pages
+      - networkmanager
+      - nmap
+      - openssh
+      - pacman-contrib,pacutils,expac
+      - python,python-psutil,python-wheel
+      - rsync
+      - screen,minicom
+      - smartmontools
+      - smbclient
+      - sysfsutils
+      - tree
+      - unrar,unzip,xz
+      - usbutils
+      - vi
+      - wget
+      - zsh,zsh-autosuggestions
+
+- name: base > Enable locale
+  ansible.builtin.lineinfile:
+    dest: /etc/locale.gen
+    regexp: '^#({{ item }})$'
+    line: '\1'
+    backrefs: yes
+  with_items:
+    - 'en_US.UTF-8 UTF-8'
+    - 'fr_FR.UTF-8 UTF-8'
+  notify: locale-gen
+
+- name: base > Set system locale
+  ansible.builtin.lineinfile: dest=/etc/locale.conf line={{ item }} create=yes
+  with_items:
+    - 'LANG=fr_FR.UTF-8'
+
+# keyboard layouts
+- block:
+  - name: base > Set the X11 keyboard layout
+    ansible.builtin.shell: "{{ base['x11keymap'] }}"
+
+- name: base > Enable systemd timer paccache.timer
+  ansible.builtin.systemd: name=paccache.timer enabled=yes state=started
+
+- name: base > Install custom udev rules
+  ansible.builtin.copy: src=udev/{{ item }} dest=/etc/udev/rules.d/{{ item }} mode=0644
+  with_items:
+    - esp32.rules
+    - raspberry.rules
+    - saleae.rules
+    - steam-controllers.rules
+
+# aur_builder
+- block:
+  - name: base > Create aur_builder user
+    user: name=aur_builder system=yes
+  - name: base > Allow passwordless sudo pacman for aur_builder
+    lineinfile:
+      path: /etc/sudoers.d/aur_builder-allow-to-sudo-pacman
+      state: present
+      line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+      validate: /usr/sbin/visudo -cf %s
+      create: yes
+  - name: base > Copy .bash_profile for aur_builder
+    ansible.builtin.copy: src=aur_builder/bash_profile dest=~aur_builder/.bash_profile mode=0400 owner=aur_builder group=aur_builder
+
+# network
+- block:
+  - name: base > Enable mDNS hostname resolution
+    ansible.builtin.lineinfile:
+      path: /etc/nsswitch.conf
+      regexp: '^hosts: files mymachines(.*)'
+      line: 'hosts: files mdns4_minimal [NOTFOUND=return] mymachines\1'
+      backrefs: yes
+  - name: base > Enable avahi-daemon service
+    ansible.builtin.systemd: name=avahi-daemon enabled=yes state=started
+
+# firewall
+- block:
+  - name: firewall > Install Firewalld
+    community.general.pacman: name=firewalld
+  - name: firewall > Enable & Start Firewalld service
+    ansible.builtin.systemd: name=firewalld enabled=yes state=started
+
+# audio
+- name: base > Install Pipewire
+  community.general.pacman: name=pipewire,pipewire-pulse,pulsemixer
+
+# video
+- block:
+  - name: base > Install Wayland
+    community.general.pacman: name=wayland,wayland-protocols,wayland-utils
+  - name: base > Install XWayland
+    community.general.pacman: name=xorg-xwayland,xorg-xlsclients
+  - name: base > Mesa and Vulkan
+    community.general.pacman: name=mesa,vulkan-icd-loader,vulkan-tools
+  - name: base > Install Video Acceleration (VA) packages
+    community.general.pacman: name=libva,libva-utils
+
+# printer
+- block:
+  - name: base > Install CUPS
+    community.general.pacman: name=cups,ghostscript
+  - name: base > Enable CUPS service
+    ansible.builtin.systemd: name=cups enabled=yes state=started
+  - name: base > Set default page format to A4
+    ansible.builtin.lineinfile: dest=/etc/papersize line="a4" create=yes
+
+# fonts
+- block:
+  - name: base > Install fonts
+    community.general.pacman: name={{ packages | join(',') }}
+    vars:
+      packages:
+        - noto-fonts,noto-fonts-cjk,noto-fonts-emoji
+        - ttf-caladea
+        - ttf-dejavu
+        - ttf-liberation
+        - ttf-opensans
+        - ttf-roboto
+        - ttf-iosevkaterm-nerd
+  - name: base > Enable fonts presets
+    ansible.builtin.file: state=link src="/usr/share/fontconfig/conf.avail/{{ item }}" path="/etc/fonts/conf.d/{{ item }}"
+    with_items:
+      - 10-sub-pixel-rgb.conf
+      - 11-lcdfilter-default.conf
+      - 70-no-bitmaps.conf
