@@ -1,0 +1,2 @@
+pip>=23.3
+ansible-core==2.16.2

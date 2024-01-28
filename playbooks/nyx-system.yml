@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  become: true
+  become_user: root
+  become_method: ansible.builtin.sudo
+
+  vars:
+    kernel:
+      default: arch-lts
+      rootuuid: 78da4ebd-5eba-4a7c-8caf-5f297eece0a7
+      ucode: amd-ucode
+      options: nvidia-drm.modeset=1
+
+  tasks:
+    - name: Fail if we are not on nyx
+      ansible.builtin.fail: msg="This playbook is made to set up nyx only"
+      when: ansible_hostname != "nyx"
+    - {import_role: name=system tasks_from=kernel, tags: ['kernel']}

@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: true
+  become_user: root
+  become_method: ansible.builtin.sudo
+
+  vars:
+    kernel:
+      default: arch-latest
+      rootuuid: 
+      ucode: intel-ucode
+
+  tasks:
+    - name: Fail if we are not on ivara
+      ansible.builtin.fail: msg="This playbook is made to set up ivara only"
+      when: ansible_hostname != "ivara"
+    - {import_role: name=system tasks_from=kernel, tags: ['kernel']}
