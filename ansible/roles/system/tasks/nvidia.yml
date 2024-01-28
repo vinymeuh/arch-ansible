@@ -1,0 +1,16 @@
+- name: nvidia > Install Nvidia driver
+  community.general.pacman: name={{ packages | join(',') }}
+  vars:
+    packages:
+      - nvidia-dkms
+      - nvidia-utils,nvidia-settings,nvtop
+      - opencl-nvidia
+
+- name: nvidia > Install Video Decode and Presentation API for UNIX (VDPAU) packages
+  community.general.pacman: name={{ packages | join(',') }}
+  vars:
+    packages:
+      - libvdpau,libva-vdpau-driver,vdpauinfo
+
+- name: nvidia > Disable GDM udev rules masking Wayland option
+  ansible.builtin.file: src="/dev/null" dest="/etc/udev/rules.d/61-gdm.rules" state=link force=yes
