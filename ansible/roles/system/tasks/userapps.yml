@@ -1,0 +1,10 @@
+- name: userapps > User viny
+  ansible.builtin.user: name=viny group=viny shell=/bin/zsh groups=uucp,wheel append=yes
+
+- name: userapps > Install archlinux packages
+  community.general.pacman: name={{ userapps['packages'] | join(',') }}
+  when: userapps['packages'] is defined
+
+- name: userapps > Install flatpaks
+  community.general.flatpak: name={{ userapps['flatpaks'] | join(',') }}
+  when: userapps['flatpaks'] is defined

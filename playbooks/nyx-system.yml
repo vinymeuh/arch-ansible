@@ -12,6 +12,35 @@
       options: nvidia-drm.modeset=1
     base:
       x11keymap: localectl set-x11-keymap us,fr pc105 altgr-intl,azerty
+    userapps:
+      packages:
+        - chezmoi
+        - chromium
+        - darktable,shotwell
+        - dotnet-runtime,dotnet-sdk,mono
+        - exiv2,imagemagick,perl-image-exiftool
+        - firefox
+        - thunderbird,thunderbird-i18n-fr 
+        - gnucash
+        - heaptrack,lcov,perf
+        - helix
+        - hunspell,hunspell-fr
+        - inkscape
+        - libxcrypt-compat  # Saleae Logic 2
+        - jre-openjdk
+        - keepassxc
+        - kicad,kicad-library
+        - ncmpcpp
+        - neovim,ripgrep,xsel
+        - pdfarranger
+        - quodlibet
+        - vlc
+        - wezterm
+      flatpaks:
+        - io.kopia.KopiaUI
+        - org.freac.freac
+        - com.valvesoftware.Steam
+        - com.valvesoftware.Steam.CompatibilityTool.Proto
 
   tasks:
     - name: Fail if we are not on nyx
@@ -21,3 +50,4 @@
     - {import_role: name=system tasks_from=base, tags: ['base']}
     - {import_role: name=system tasks_from=nvidia, tags: ['nvidia']}
     - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
+    - {import_role: name=system tasks_from=userapps, tags: ['userapps']}
