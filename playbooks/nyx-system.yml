@@ -11,6 +11,7 @@
       ucode: amd-ucode
       options: nvidia-drm.modeset=1
     base:
+      keymap: localectl set-keymap fr
       x11keymap: localectl set-x11-keymap us,fr pc105 altgr-intl,azerty
     userapps:
       packages:
@@ -47,7 +48,3 @@
       ansible.builtin.fail: msg="This playbook is made to set up nyx only"
       when: ansible_hostname != "nyx"
     - {import_role: name=system tasks_from=kernel, tags: ['kernel']}
-    - {import_role: name=system tasks_from=base, tags: ['base']}
-    - {import_role: name=system tasks_from=nvidia, tags: ['nvidia']}
-    - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
-    - {import_role: name=system tasks_from=userapps, tags: ['userapps']}

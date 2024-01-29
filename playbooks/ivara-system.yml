@@ -7,11 +7,33 @@
   vars:
     kernel:
       default: arch-latest
-      rootuuid: 
+      rootuuid: 7036bf75-ca61-4ff7-b0db-513143bb6edc
       ucode: intel-ucode
+    base:
+      keymap: localectl set-keymap fr
+      x11keymap: localectl set-x11-keymap fr pc105 azerty
+    userapps:
+      packages:
+        - chezmoi
+        - chromium
+        - exiv2,imagemagick,perl-image-exiftool
+        - firefox
+        - heaptrack,lcov,perf
+        - helix
+        - hunspell,hunspell-fr
+        - jre-openjdk
+        - keepassxc
+        - ncmpcpp
+        - neovim,ripgrep,xsel
+        - pdfarranger
+        - vlc
+        - wezterm
 
   tasks:
     - name: Fail if we are not on ivara
       ansible.builtin.fail: msg="This playbook is made to set up ivara only"
       when: ansible_hostname != "ivara"
     - {import_role: name=system tasks_from=kernel, tags: ['kernel']}
+    - {import_role: name=system tasks_from=base, tags: ['base']}
+    - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
+    - {import_role: name=system tasks_from=userapps, tags: ['userapps']}

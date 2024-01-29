@@ -58,6 +58,8 @@
 
 # keyboard layouts
 - block:
+  - name: base > Set the keyboard layout
+    ansible.builtin.shell: "{{ base['keymap'] }}"
   - name: base > Set the X11 keyboard layout
     ansible.builtin.shell: "{{ base['x11keymap'] }}"
 
