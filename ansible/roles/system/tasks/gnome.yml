@@ -40,12 +40,13 @@
       - xdg-desktop-portal-gnome,xdg-user-dirs-gtk
 
 # https://archlinux.org/groups/x86_64/gnome-extra/
-- name: gnome > Install my selection from 'gnome-extra' group
+- name: gnome > Install complementary packages ('gnome-extra' & others)
   community.general.pacman: name={{ packages | join(',') }}
   vars:
     packages:
       - dconf-editor
       - ghex
+      - gnome-themes-extra
       - gnome-tweaks
 
 - name: gnome > Install IBus
