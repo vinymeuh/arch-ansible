@@ -1,0 +1,17 @@
+- ansible.builtin.set_fact: 
+    keyboard_facts:
+      keymap: "{{lookup('ini', 'KEYMAP type=properties file=/etc/vconsole.conf') }}"
+      xkblayout: "{{lookup('ini', 'XKBLAYOUT type=properties file=/etc/vconsole.conf') }}"
+      xkbmodel: "{{lookup('ini', 'XKBMODEL type=properties file=/etc/vconsole.conf') }}"
+      xkbvariant: "{{lookup('ini', 'XKBVARIANT type=properties file=/etc/vconsole.conf') }}"
+
+- name: keyboard > Set the keyboard layout
+  ansible.builtin.shell: localectl set-keymap --no-convert {{ keyboard['keymap'] }}
+  when: keyboard_facts.keymap != keyboard.keymap
+
+- name: keyboard > Set the X11 keyboard layout
+  ansible.builtin.shell: localectl set-x11-keymap {{ keyboard['xkblayout'] }} {{ keyboard['xkbmodel'] }} {{ keyboard['xkbvariant'] }}
+  when: 
+    - keyboard_facts.xkblayout != keyboard.xkblayout or
+      keyboard_facts.xkbmodel != keyboard.xkbmodel   or
+      keyboard_facts.xkbvariant != keyboard.xkbvariant
