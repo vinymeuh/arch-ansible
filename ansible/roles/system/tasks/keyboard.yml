@@ -5,6 +5,34 @@
       xkbmodel: "{{lookup('ini', 'XKBMODEL type=properties file=/etc/vconsole.conf') }}"
       xkbvariant: "{{lookup('ini', 'XKBVARIANT type=properties file=/etc/vconsole.conf') }}"
 
+- block:
+  - name: keyboard > qwerty-fr - check if AUR package is already installed
+    ansible.builtin.shell: pacman -Q xkb-qwerty-fr
+    register: pkg_installed
+    failed_when: false
+    changed_when: false
+  - name: keyboard > qwerty-fr - install AUR package
+    ansible.builtin.shell: |
+      git clone --depth=1 https://aur.archlinux.org/xkb-qwerty-fr.git
+      cd xkb-qwerty-fr && makepkg -s && sudo pacman -U --noconfirm xkb-qwerty-fr-*.pkg.tar.zst
+    become: true
+    become_user: aur_builder
+    when: pkg_installed.rc > 0
+
+# fix localectl list-x11-keymap-variants us
+- block:
+  - name: keyboard > qwerty-fr - check if /usr/share/X11/xkb/rules/base.lst need to be updated
+    ansible.builtin.shell: grep ' qwerty-fr ' /usr/share/X11/xkb/rules/base.lst
+    register: qwerty_fr_present
+    failed_when: false
+    changed_when: false
+  - name: keyboard > qwerty-fr - update /usr/share/X11/xkb/rules/base.lst
+    ansible.builtin.shell: |
+      linen=$(grep -n ' us: ' /usr/share/X11/xkb/rules/base.lst | tail -1 | cut -d':' -f1)
+      linen=$((linen + 1))
+      sed -i "$linen i \ \ qwerty-fr       us: French (qwerty-fr; US with french symbols)" /usr/share/X11/xkb/rules/base.lst
+    when: qwerty_fr_present.rc > 0
+
 - name: keyboard > Set the keyboard layout
   ansible.builtin.shell: localectl set-keymap --no-convert {{ keyboard['keymap'] }}
   when: keyboard_facts.keymap != keyboard.keymap

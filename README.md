@@ -1,6 +1,6 @@
 # arch-ansible
 
-A set of [Ansible](https://www.ansible.com/) playbooks to setup and manage [Arch Linux](https://archlinux.org/) on computers.
+A set of [Ansible](https://www.ansible.com/) playbooks to setup and manage [Arch Linux](https://archlinux.org/) on my computers.
 
 ## Bootstrap
 
@@ -29,4 +29,11 @@ pip install -r requirements.txt
 
 ```shell
 ansible-galaxy collection install -r requirements.yml
+```
+
+## Usage
+
+```
+ansible-playbook playbooks/nyx-system.yml -K --check
+ansible-playbook playbooks/nyx-system.yml --list-tags
 ```

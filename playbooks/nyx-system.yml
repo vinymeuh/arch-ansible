@@ -10,9 +10,11 @@
       rootuuid: 78da4ebd-5eba-4a7c-8caf-5f297eece0a7
       ucode: amd-ucode
       options: nvidia-drm.modeset=1
-    base:
-      keymap: localectl set-keymap fr
-      x11keymap: localectl set-x11-keymap us,fr pc105 altgr-intl,azerty
+    keyboard:
+      keymap: us-acentos
+      xkblayout: us,fr
+      xkbmodel: pc105
+      xkbvariant: altgr-intl,azerty
     userapps:
       packages:
         - chezmoi
@@ -24,7 +26,6 @@
         - thunderbird,thunderbird-i18n-fr 
         - gnucash
         - heaptrack,lcov,perf
-        - helix
         - hunspell,hunspell-fr
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
@@ -32,9 +33,10 @@
         - keepassxc
         - kicad,kicad-library
         - ncmpcpp
-        - neovim,ripgrep,xsel
+        - neovim,jq,ripgrep,xsel
         - pdfarranger
         - quodlibet
+        - r
         - vlc
         - wezterm
       flatpaks:
@@ -49,6 +51,7 @@
       when: ansible_hostname != "nyx"
     - {import_role: name=system tasks_from=kernel, tags: ['kernel']}
     - {import_role: name=system tasks_from=base, tags: ['base']}
+    - {import_role: name=system tasks_from=keyboard, tags: ['base', 'keyboard']}
     - {import_role: name=system tasks_from=nvidia, tags: ['nvidia']}
     - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
     - {import_role: name=system tasks_from=userapps, tags: ['userapps']}
