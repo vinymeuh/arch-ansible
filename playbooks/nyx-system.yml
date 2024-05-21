@@ -14,7 +14,7 @@
       keymap: us-acentos
       xkblayout: us,fr
       xkbmodel: pc105
-      xkbvariant: altgr-intl,azerty
+      xkbvariant: qwerty-fr,azerty
     userapps:
       packages:
         - chezmoi
