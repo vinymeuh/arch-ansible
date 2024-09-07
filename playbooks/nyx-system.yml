@@ -24,8 +24,9 @@
         - exiv2,imagemagick,perl-image-exiftool
         - firefox
         - thunderbird,thunderbird-i18n-fr 
+        - gdb,clang,lldb
         - gnucash
-        - heaptrack,lcov,perf
+        - heaptrack,lcov,perf,valgrind
         - hunspell,hunspell-fr
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
@@ -33,7 +34,7 @@
         - keepassxc
         - kicad,kicad-library
         - ncmpcpp
-        - neovim,jq,ripgrep,xsel
+        - neovim,jq,ripgrep,xsel,helix
         - pdfarranger
         - quodlibet
         - r
