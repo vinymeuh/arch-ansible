@@ -8,7 +8,7 @@
     packages:
       - acpi
       - avahi,nss-mdns
-      - base-devel,cmake,gdb
+      - base-devel,cmake
       - bluez,bluez-utils
       - bridge-utils
       - cpio
