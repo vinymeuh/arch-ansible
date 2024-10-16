@@ -17,7 +17,6 @@
       xkbvariant: qwerty-fr,azerty
     userapps:
       packages:
-        - chezmoi
         - chromium
         - darktable,shotwell
         - dotnet-runtime,dotnet-sdk,mono
@@ -27,6 +26,7 @@
         - gdb,clang,lldb
         - gnucash
         - heaptrack,lcov,perf,valgrind
+        - helix
         - hunspell,hunspell-fr
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
@@ -36,8 +36,9 @@
         - ncmpcpp
         - neovim,jq,ripgrep,xsel,helix
         - pdfarranger
+        - qemu
         - quodlibet
-        - r
+        - riscv64-linux-gnu-gcc
         - vlc
         - wezterm
       flatpaks:

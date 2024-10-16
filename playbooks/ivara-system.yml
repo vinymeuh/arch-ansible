@@ -14,7 +14,6 @@
       x11keymap: localectl set-x11-keymap fr pc105 azerty
     userapps:
       packages:
-        - chezmoi
         - chromium
         - exiv2,imagemagick,perl-image-exiftool
         - firefox
