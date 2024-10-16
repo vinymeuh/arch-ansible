@@ -23,6 +23,7 @@
       - lshw
       - lsb-release
       - man-db,man-pages
+      - neofetch
       - networkmanager
       - nmap
       - openssh
@@ -34,6 +35,7 @@
       - smbclient
       - socat
       - strace
+      - stow
       - sysfsutils
       - tree
       - unrar,unzip,xz
