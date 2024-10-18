@@ -10,23 +10,15 @@
       rootuuid: 7036bf75-ca61-4ff7-b0db-513143bb6edc
       ucode: intel-ucode
     base:
+      extended: true 
       keymap: localectl set-keymap fr
       x11keymap: localectl set-x11-keymap fr pc105 azerty
     userapps:
       packages:
-        - chromium
-        - exiv2,imagemagick,perl-image-exiftool
-        - firefox
         - heaptrack,lcov,perf
         - helix
-        - hunspell,hunspell-fr
         - jre-openjdk
-        - keepassxc
-        - ncmpcpp
-        - neovim,ripgrep,xsel
         - pdfarranger
-        - vlc
-        - wezterm
 
   tasks:
     - name: Fail if we are not on ivara

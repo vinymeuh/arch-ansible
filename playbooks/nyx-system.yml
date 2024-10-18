@@ -10,6 +10,8 @@
       rootuuid: 78da4ebd-5eba-4a7c-8caf-5f297eece0a7
       ucode: amd-ucode
       options: nvidia-drm.modeset=1
+    base:
+      extended: true
     keyboard:
       keymap: us-acentos
       xkblayout: us,fr
@@ -17,30 +19,21 @@
       xkbvariant: qwerty-fr,azerty
     userapps:
       packages:
-        - chromium
         - darktable,shotwell
         - dotnet-runtime,dotnet-sdk,mono
-        - exiv2,imagemagick,perl-image-exiftool
-        - firefox
         - thunderbird,thunderbird-i18n-fr 
         - gdb,clang,lldb
         - gnucash
         - heaptrack,lcov,perf,valgrind
         - helix
-        - hunspell,hunspell-fr
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
         - jre-openjdk
-        - keepassxc
         - kicad,kicad-library
-        - ncmpcpp
-        - neovim,jq,ripgrep,xsel,helix
         - pdfarranger
         - qemu
         - quodlibet
         - riscv64-linux-gnu-gcc
-        - vlc
-        - wezterm
       flatpaks:
         - io.kopia.KopiaUI
         - org.freac.freac

@@ -16,14 +16,12 @@
       - dmidecode
       - exfat-utils
       - flatpak
-      - fzf
       - git,python-pre-commit
       - lm_sensors
       - lsof
       - lshw
       - lsb-release
       - man-db,man-pages
-      - neofetch
       - networkmanager
       - nmap
       - openssh
@@ -35,7 +33,6 @@
       - smbclient
       - socat
       - strace
-      - stow
       - sysfsutils
       - tree
       - unrar,unzip,xz
@@ -43,6 +40,23 @@
       - vi
       - wget
       - zsh,zsh-autosuggestions
+
+- name: base > Install base tools (extended)
+  community.general.pacman: name={{ packages | join(',') }}
+  when: base['extended'] | bool == true
+  vars:
+    packages:
+      - chromium,firefox
+      - exiv2,imagemagick,perl-image-exiftool
+      - fzf
+      - hunspell,hunspell-fr
+      - keepassxc
+      - neofetch
+      - ncmpcpp
+      - neovim,ripgrep,xsel
+      - stow
+      - vlc
+      - wezterm
 
 - name: base > Enable locale
   ansible.builtin.lineinfile:
