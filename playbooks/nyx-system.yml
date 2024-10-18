@@ -31,7 +31,7 @@
         - jre-openjdk
         - kicad,kicad-library
         - pdfarranger
-        - qemu
+        - qemu,qemu-system-riscv
         - quodlibet
         - riscv64-linux-gnu-gcc
       flatpaks:

@@ -19,6 +19,7 @@
         - helix
         - jre-openjdk
         - pdfarranger
+        - qemu,qemu-system-riscv
 
   tasks:
     - name: Fail if we are not on ivara
