@@ -6,26 +6,18 @@ A set of [Ansible](https://www.ansible.com/) playbooks to setup and manage [Arch
 
 1. Install [Arch Linux](https://github.com/vinymeuh/arch-ansible/blob/master/docs/INSTALL-ARCHLINUX.md)
 
-2. Install **pyenv** using [pyenv installer](https://github.com/pyenv/pyenv-installer)
+2. Install **python-pipx**
 
-3. Create Python **virtualenv**:
-
-```shell
-pyenv virtualenv system arch-ansible
-```
-
-4. Install Ansible
+3. Install Ansible
 
 ```shell
 cd $HOME
 git clone https://github.com/vinymeuh/arch-ansible
 cd arch-ansible
-pyenv version  # must be arch-ansible, see .python-version
-pip install -r requirements.txt
+pipx install ansible-core
 ```
 
-5. Install Ansible collections
-
+4. Install Ansible collections
 
 ```shell
 ansible-galaxy collection install -r requirements.yml
@@ -33,7 +25,7 @@ ansible-galaxy collection install -r requirements.yml
 
 ## Usage
 
-```
+```shell
 ansible-playbook playbooks/nyx-system.yml -K --check
 ansible-playbook playbooks/nyx-system.yml --list-tags
 ```
