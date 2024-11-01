@@ -7,6 +7,7 @@
   vars:
     packages:
       - acpi
+      - arch-audit
       - avahi,nss-mdns
       - base-devel,cmake
       - bluez,bluez-utils
