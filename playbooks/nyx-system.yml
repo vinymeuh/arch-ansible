@@ -25,13 +25,13 @@
         - gdb,clang,lldb
         - gnucash
         - heaptrack,lcov,perf,valgrind
-        - helix
+        - helix,zed
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
         - jre-openjdk
         - kicad,kicad-library
         - pdfarranger
-        - qemu,qemu-system-riscv
+        - qemu,qemu-system-riscv,qemu-user-static-binfmt
         - quodlibet
         - riscv64-linux-gnu-gcc
       flatpaks:
@@ -50,3 +50,5 @@
     - {import_role: name=system tasks_from=nvidia, tags: ['nvidia']}
     - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
     - {import_role: name=system tasks_from=userapps, tags: ['userapps']}
+    - {import_role: name=system tasks_from=podman, tags: ['podman']}
+    - {import_role: name=system tasks_from=hardening, tags: ['hardening']}
