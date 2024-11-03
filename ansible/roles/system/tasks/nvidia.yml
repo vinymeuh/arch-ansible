@@ -2,7 +2,7 @@
   community.general.pacman: name={{ packages | join(',') }}
   vars:
     packages:
-      - nvidia-dkms
+      - nvidia-open-dkms
       - nvidia-utils,nvidia-settings,nvtop
       - opencl-nvidia
 
