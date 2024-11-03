@@ -16,6 +16,7 @@
       - curl
       - dmidecode
       - exfat-utils
+      - feh
       - flatpak
       - git,python-pre-commit
       - lm_sensors
