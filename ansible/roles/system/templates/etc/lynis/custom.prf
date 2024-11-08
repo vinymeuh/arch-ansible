@@ -1,0 +1,39 @@
+language=en
+
+# -----------------------------------------------------------------------------
+# Controls
+# See https://cisofy.com/lynis/controls/ for details
+# -----------------------------------------------------------------------------
+
+# no password expire date for my account
+skip-test=AUTH-9282
+# no password aging
+skip-test=AUTH-9286
+
+# legal banner in /etc/issue
+skip-test=BANN-7126
+
+# separation of partitions
+skip-test=FILE-6310
+
+# limit access to compilers
+skip-test=HRDN-7220
+skip-test=HRDN-7222
+
+# system need to reboot
+skip-test=KRNL-5830
+
+# remote syslogging
+skip-test=LOGG-2154
+
+# package updates for pacman based system
+skip-test=PKGS-7312
+
+# idle session handling
+skip-test=SHLL-6220
+
+# disable firewire storage
+skip-test=STRG-1846
+
+# disable USB storage
+skip-test=USB-1000
