@@ -1,0 +1,12 @@
+- name: hardening > Install Lynis
+  community.general.pacman: name=lynis
+
+- name: hardening > Configure Lynis
+  ansible.builtin.template: src=etc/lynis/custom.prf dest=/etc/lynis/custom.prf mode=0644
+
+- name: hardening > Set default umask to 027
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    regexp: '^UMASK.*'
+    line: 'UMASK           027'
+    backrefs: yes
