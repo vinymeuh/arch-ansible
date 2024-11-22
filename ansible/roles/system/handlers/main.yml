@@ -1,2 +1,4 @@
 - name: locale-gen
   command: locale-gen
+- name: sysctl
+  command: sysctl --system

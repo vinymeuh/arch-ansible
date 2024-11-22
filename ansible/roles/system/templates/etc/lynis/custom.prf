@@ -37,3 +37,6 @@ skip-test=STRG-1846
 
 # disable USB storage
 skip-test=USB-1000
+
+# kernel/sysctl
+skip-test=KRNL-6000:kernel.modules_disabled

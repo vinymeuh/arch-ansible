@@ -7,6 +7,16 @@
 - name: hardening > Set default umask to 027
   ansible.builtin.lineinfile:
     path: /etc/login.defs
-    regexp: '^UMASK.*'
-    line: 'UMASK           027'
+    regexp: "^UMASK.*"
+    line: "UMASK           027"
     backrefs: yes
+
+- name: hardening > Remove unecessary packages
+  community.general.pacman: name={{ packages | join(',') }} state=absent
+  vars:
+    packages:
+      - gnome-user-share,apache,mod_dnssd
+
+- name: hardening > Kernel hardening
+  ansible.builtin.template: src=etc/sysctl.d/80-hardening.conf dest=/etc/sysctl.d/80-hardening.conf mode=0644
+  notify: sysctl

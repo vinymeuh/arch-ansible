@@ -27,7 +27,6 @@
       - gnome-software
       - gnome-system-monitor
       - gnome-text-editor
-      - gnome-user-share
       - gnome-weather
       - gvfs,gvfs-afc,gvfs-goa,gvfs-google,gvfs-gphoto2,gvfs-mtp,gvfs-nfs,gvfs-smb
       - loupe
