@@ -34,6 +34,7 @@
         - qemu,qemu-system-riscv,qemu-user-static-binfmt
         - quodlibet
         - riscv64-linux-gnu-gcc
+        - zettlr
       flatpaks:
         - io.kopia.KopiaUI
         - org.freac.freac
