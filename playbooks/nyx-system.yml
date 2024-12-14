@@ -36,7 +36,6 @@
         - riscv64-linux-gnu-gcc
         - zettlr
       flatpaks:
-        - io.kopia.KopiaUI
         - org.freac.freac
         - com.valvesoftware.Steam
         - com.valvesoftware.Steam.CompatibilityTool.Proto
