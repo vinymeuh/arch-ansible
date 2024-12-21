@@ -15,11 +15,15 @@
       x11keymap: localectl set-x11-keymap fr pc105 azerty
     userapps:
       packages:
-        - heaptrack,lcov,perf
-        - helix
+        - gdb,clang,lldb
+        - heaptrack,lcov,perf,valgrind
         - jre-openjdk
+        - keepassxc
         - pdfarranger
-        - qemu,qemu-system-riscv
+        - qemu,qemu-system-riscv,qemu-user-static-binfmt
+        - riscv64-linux-gnu-gcc
+      flatpaks:
+        - com.valvesoftware.Steam
 
   tasks:
     - name: Fail if we are not on ivara

@@ -29,6 +29,7 @@
         - inkscape
         - libxcrypt-compat  # Saleae Logic 2
         - jre-openjdk
+        - keepassxc
         - kicad,kicad-library
         - pdfarranger
         - qemu,qemu-system-riscv,qemu-user-static-binfmt
