@@ -14,6 +14,7 @@ A set of [Ansible](https://www.ansible.com/) playbooks to setup and manage [Arch
 cd $HOME
 git clone https://github.com/vinymeuh/arch-ansible
 cd arch-ansible
+echo $PIPX_BIN_DIR # must be ~/bin
 pipx install ansible-core
 ```
 
