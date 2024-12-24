@@ -39,7 +39,6 @@
       flatpaks:
         - org.freac.freac
         - com.valvesoftware.Steam
-        - com.valvesoftware.Steam.CompatibilityTool.Proto
 
   tasks:
     - name: Fail if we are not on nyx
