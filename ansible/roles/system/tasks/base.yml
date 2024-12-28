@@ -58,7 +58,7 @@
       - neovim,ripgrep,xsel
       - stow
       - vlc
-      - wezterm
+      - ghostty,wezterm
 
 - name: base > Enable locale
   ansible.builtin.lineinfile:

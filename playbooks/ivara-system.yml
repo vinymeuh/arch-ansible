@@ -18,7 +18,6 @@
         - gdb,clang,lldb
         - heaptrack,lcov,perf,valgrind
         - jre-openjdk
-        - keepassxc
         - pdfarranger
         - qemu,qemu-system-riscv,qemu-user-static-binfmt
         - riscv64-linux-gnu-gcc
