@@ -36,8 +36,9 @@
         - riscv64-linux-gnu-gcc
         - zettlr
       flatpaks:
-        - org.freac.freac
+        - com.github.tchx84.Flatseal
         - com.valvesoftware.Steam
+        - org.freac.freac
 
   tasks:
     - name: Fail if we are not on nyx
