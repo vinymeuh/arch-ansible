@@ -44,7 +44,6 @@
   vars:
     packages:
       - dconf-editor
-      - ghex
       - gnome-themes-extra
       - gnome-tweaks
 

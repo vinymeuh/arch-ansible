@@ -10,17 +10,18 @@
       rootuuid: 7036bf75-ca61-4ff7-b0db-513143bb6edc
       ucode: intel-ucode
     base:
-      extended: true 
       keymap: localectl set-keymap fr
       x11keymap: localectl set-x11-keymap fr pc105 azerty
     userapps:
       packages:
-        - gdb,clang,lldb
+        - gdb,clang,lldb,llvm
         - heaptrack,lcov,perf,valgrind
+        - helix,zed
         - jre-openjdk
-        - pdfarranger
+        - keepassxc
         - qemu,qemu-system-riscv,qemu-user-static-binfmt
         - riscv64-linux-gnu-gcc
+        - vlc
       flatpaks:
         - com.valvesoftware.Steam
 
