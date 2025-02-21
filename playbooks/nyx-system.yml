@@ -24,7 +24,7 @@
         - gdb,clang,lldb,llvm
         - gnucash
         - heaptrack,lcov,perf,valgrind
-        - helix,zed
+        - helix
         - inkscape
         - jre-openjdk
         - keepassxc
