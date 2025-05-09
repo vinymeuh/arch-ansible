@@ -14,9 +14,10 @@
       x11keymap: localectl set-x11-keymap fr pc105 azerty
     userapps:
       packages:
+        - fish
         - gdb,clang,lldb,llvm
-        - heaptrack,lcov,perf,valgrind
-        - helix,zed
+        - lcov,perf
+        - helix
         - jre-openjdk
         - keepassxc
         - qemu,qemu-system-riscv,qemu-user-static-binfmt

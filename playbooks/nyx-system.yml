@@ -21,9 +21,10 @@
         - darktable,shotwell
         - dotnet-runtime,dotnet-sdk,mono
         - exiv2,imagemagick,perl-image-exiftool
+        - fish
         - gdb,clang,lldb,llvm
         - gnucash
-        - heaptrack,lcov,perf,valgrind
+        - lcov,perf
         - helix
         - inkscape
         - jre-openjdk
@@ -31,7 +32,7 @@
         - kicad,kicad-library
         - libxcrypt-compat  # Saleae Logic 2
         - ncmpcpp
-        - neovim,ripgrep,xsel
+        - ripgrep,xsel
         - pdfarranger
         - qemu,qemu-system-riscv,qemu-user-static-binfmt
         - quodlibet
@@ -39,7 +40,6 @@
         - thunderbird,thunderbird-i18n-fr
         - vlc
       flatpaks:
-        - com.github.tchx84.Flatseal
         - com.valvesoftware.Steam
         - org.freac.freac
 
