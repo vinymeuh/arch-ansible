@@ -30,6 +30,8 @@
         - jre-openjdk
         - keepassxc
         - kicad,kicad-library
+        - krita
+        - libreoffice-still
         - libxcrypt-compat  # Saleae Logic 2
         - ncmpcpp
         - ripgrep,xsel
