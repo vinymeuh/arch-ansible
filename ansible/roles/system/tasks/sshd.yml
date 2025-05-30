@@ -1,0 +1,9 @@
+- name: sshd > Install OpenSSH
+  community.general.pacman: name=openssh
+
+- name: sshd > Copy configuration file
+  ansible.builtin.copy: src=root/ssh/00-sshd.conf dest=/etc/ssh/ssh_config.d mode=0400 owner=root group=root
+
+- name: sshd > Enable service
+  ansible.builtin.systemd: name=sshd enabled=yes state=started
+

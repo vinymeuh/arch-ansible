@@ -33,6 +33,8 @@
         - krita
         - libreoffice-still
         - libxcrypt-compat  # Saleae Logic 2
+        - lite-xl
+        - lighttpd,cgit
         - ncmpcpp
         - ripgrep,xsel
         - pdfarranger
@@ -53,6 +55,7 @@
     - {import_role: name=system tasks_from=base, tags: ['base']}
     - {import_role: name=system tasks_from=keyboard, tags: ['base', 'keyboard']}
     - {import_role: name=system tasks_from=nvidia, tags: ['nvidia']}
+    - {import_role: name=system tasks_from=sshd, tags: ['sshd']}
     - {import_role: name=system tasks_from=gnome, tags: ['gnome']}
     - {import_role: name=system tasks_from=userapps, tags: ['userapps']}
     - {import_role: name=system tasks_from=podman, tags: ['podman']}
